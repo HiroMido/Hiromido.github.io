@@ -1,0 +1,396 @@
+よもぎ蒸し店舗ホームページ
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>完全プライベート温活サロン | 勝どき</title>
+    <style>
+        /* 全体基本設定 */
+        :root {
+            --primary-color: #8b5a2b;
+            --secondary-color: #f7f0e6;
+            --accent-color: #c06c84;
+            --bg-color: #faf7f2;
+            --text-color: #333333;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        /* ヘッダー */
+        header {
+            background-color: #ffffff;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .btn-reserve-nav {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        /* メインビジュアル（ヒーロー） */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80') center/cover;
+            color: #ffffff;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .hero h1 {
+            font-size: 1.5rem;
+            line-height: 1.4;
+            margin-bottom: 15px;
+        }
+        .hero p {
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            opacity: 0.95;
+        }
+        .btn-main {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            background-color: var(--accent-color);
+            color: #ffffff;
+            padding: 14px 20px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        /* セクション共通 */
+        section {
+            padding: 40px 15px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-color);
+            margin: 8px auto 0;
+        }
+
+        /* グリッドカードレイアウト */
+        .grid-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .card {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .card h3 {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        /* 施術メニュー（スマホで見やすいカード表示） */
+        .menu-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .menu-item {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-left: 5px solid var(--primary-color);
+        }
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        .menu-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #333333;
+        }
+        .menu-price {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 1.1rem;
+        }
+        .menu-desc {
+            font-size: 0.9rem;
+            color: #555555;
+        }
+
+        /* 商品販売（EC） */
+        .shop-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .shop-item {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .shop-item h3 {
+            font-size: 1.05rem;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+        .btn-buy {
+            display: inline-block;
+            width: 100%;
+            margin-top: 12px;
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 10px 0;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        /* 予約フォーム */
+        .reserve-form {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem; /* スマホで自動ズームしない16px相当 */
+            background-color: #fafafa;
+        }
+        .btn-submit {
+            width: 100%;
+            background-color: var(--accent-color);
+            color: #ffffff;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* フッター */
+        footer {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            text-align: center;
+            padding: 30px 15px;
+            margin-top: 40px;
+            font-size: 0.85rem;
+        }
+
+        /* PC・タブレット向けの調整 (画面幅が広い場合) */
+        @media (min-width: 768px) {
+            body { font-size: 16px; }
+            .hero { padding: 90px 20px; }
+            .hero h1 { font-size: 2.2rem; }
+            .grid-cards { display: grid; grid-template-columns: repeat(3, 1fr); }
+            .shop-grid { display: grid; grid-template-columns: repeat(2, 1fr); }
+            .reserve-form { padding: 35px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ヘッダー -->
+    <header>
+        <div class="header-container">
+            <div class="logo">完全プライベート温活サロン</div>
+            <a href="#reserve" class="btn-reserve-nav">Web予約</a>
+        </div>
+    </header>
+
+    <!-- ヒーローセクション -->
+    <div class="hero">
+        <h1>温活を通じて体と心を温め・整え<br>本来の健やかさを取り戻す</h1>
+        <p>勝どき駅近く｜1日2〜3名限定 完全プライベート空間</p>
+        <a href="#reserve" class="btn-main">今すぐWeb予約する</a>
+    </div>
+
+    <!-- コンセプト・こだわり -->
+    <section id="about">
+        <h2 class="section-title">サロンのこだわり</h2>
+        <p style="text-align: center; margin-bottom: 20px; font-size: 0.95rem;">
+            代表自身の体質改善体験に基づき、黄土100%の座器と無農薬漢方を用いた確かな技術で、深いリラクゼーションと根本的な体質改善をお届けします。
+        </p>
+        <div class="grid-cards">
+            <div class="card">
+                <h3>黄土100%座器＆壺</h3>
+                <p>上質な黄土を100%使用し、手作りの素焼きで作成。加熱することで豊富な遠赤外線を放射し、身体を芯から温めます。</p>
+            </div>
+            <div class="card">
+                <h3>26種類の無農薬漢方</h3>
+                <p>韓国の専属漢方医が独自ブレンドした100%天然無農薬薬草を使用。認定証付きの安全なお薬草です。</p>
+            </div>
+            <div class="card">
+                <h3>最新テラヘルツ波ケア</h3>
+                <p>希少なテラヘルツメーターを導入。足裏から共振エネルギー波を届けて、深部熱循環と新陳代謝を促進します。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 施術メニュー -->
+    <section id="menu">
+        <h2 class="section-title">施術メニュー・料金</h2>
+        <p style="text-align: center; font-size: 0.85rem; color: #666; margin-bottom: 20px;">
+            ※標準所要時間：1枠120分（カウンセリング・お着替え・施術・デトックスタイム含む）
+        </p>
+        <div class="menu-list">
+            <div class="menu-item">
+                <div class="menu-header">
+                    <span class="menu-title">黄土漢方蒸し</span>
+                    <span class="menu-price">10,000円 (税込)</span>
+                </div>
+                <div class="menu-desc">目的別（美容用・婦人用・ダイエット用）に最適なお薬草を選定し、遠赤外線効果の高い黄土100%座器でじっくり温めます。</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-header">
+                    <span class="menu-title">テラヘルツ波ケア (30分)</span>
+                    <span class="menu-price">7,000円 (税込)</span>
+                </div>
+                <div class="menu-desc">生物共振エネルギー波を足裏から導入し、体内の深部熱循環をサポートします。</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-header">
+                    <span class="menu-title">ビソンセラピー</span>
+                    <span class="menu-price">コース別設定</span>
+                </div>
+                <div class="menu-desc">マグネシウム含有半導体により経絡や神経を刺激し、深部組織の巡りをスムーズに整えます。</div>
+            </div>
+        </div>
+        <p style="font-size: 0.8rem; color: #777; margin-top: 15px; text-align: center;">
+            ※男性のご利用は完全紹介制、またはペア利用のみとなります。
+        </p>
+    </section>
+
+    <!-- オンラインショップ（商品販売） -->
+    <section id="shop" style="background-color: var(--secondary-color); max-width: 100%;">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h2 class="section-title">ホームケア商品販売</h2>
+            <div class="shop-grid">
+                <div class="shop-item">
+                    <h3>自宅ケア用入浴剤「あすか湯」</h3>
+                    <p style="font-size: 0.85rem; margin-top: 5px;">本格的な漢方の香りと高い温浴効果をご自宅のバスタイムでも。</p>
+                    <a href="#" class="btn-buy">商品を購入する</a>
+                </div>
+                <div class="shop-item">
+                    <h3>厳選オーガニックプロダクト</h3>
+                    <p style="font-size: 0.85rem; margin-top: 5px;">体調管理やデトックスをサポートするこだわりぬいた健康・美容商品。</p>
+                    <a href="#" class="btn-buy">商品一覧を見る</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Web予約フォーム -->
+    <section id="reserve">
+        <h2 class="section-title">Webご予約</h2>
+        <p style="text-align: center; font-size: 0.9rem; margin-bottom: 20px;">1日2〜3名様限定の完全予約制サロンです。</p>
+        <div class="reserve-form">
+            <form action="#" method="post">
+                <div class="form-group">
+                    <label for="name">お名前</label>
+                    <input type="text" id="name" name="name" required placeholder="山田 花子">
+                </div>
+                <div class="form-group">
+                    <label for="email">メールアドレス</label>
+                    <input type="email" id="email" name="email" required placeholder="example@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="phone">電話番号</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="090-1234-5678">
+                </div>
+                <div class="form-group">
+                    <label for="menu-select">ご希望のメニュー</label>
+                    <select id="menu-select" name="menu">
+                        <option value="yomogi">黄土漢方蒸し（10,000円）</option>
+                        <option value="terahertz">テラヘルツ波ケア 30分（7,000円）</option>
+                        <option value="set">複合・ビソンセラピーコース</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="date">ご希望日時</label>
+                    <input type="datetime-local" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">ご要望・お悩み（任意）</label>
+                    <textarea id="message" name="message" rows="3" placeholder="お悩みなどをご記入ください。"></textarea>
+                </div>
+                <button type="submit" class="btn-submit">予約を送信する</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer>
+        <p><strong>完全プライベート温活サロン (仮称)</strong></p>
+        <p style="margin: 8px 0;">東京都中央区勝どき（完全予約制）</p>
+        <p style="opacity: 0.8;">&copy; Complete Private Onkatsu Salon.</p>
+    </footer>
+
+</body>
+</html>
